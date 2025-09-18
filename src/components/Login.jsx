@@ -1,25 +1,16 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { validationCheck } from "./utilities/utilitiesFunction";
 import { useDispatch } from "react-redux";
 import { loginUser } from "./AppStores/userSlice";
-import { createSocketConnection } from "./utilities/socket";
 
 const Login = () => {
   const [email, setEmail] = useState("defenderworld@gmail.com");
   const [password, setPassword] = useState("keyur123");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const newSocket = createSocketConnection();
-    newSocket.on("welcome", (data) => {
-      console.log(data);
-    });
-    return () => newSocket.close();
-  }, []);
 
   const handleSubmit = async (e) => {
     try {

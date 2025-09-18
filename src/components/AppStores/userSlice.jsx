@@ -27,9 +27,12 @@ const userSlice = createSlice({
             if (token) {
                 state.token = token;
             }
+        },
+        chatList: (state, action) => {
+            state.chatList = action.payload.chatList;
         }
     },
 });
 
-export const { loginUser, logout, loadTokenFromStorage } = userSlice.actions;
+export const { loginUser, logout, loadTokenFromStorage, chatList } = userSlice.actions;
 export default userSlice.reducer;

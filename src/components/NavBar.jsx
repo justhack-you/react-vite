@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 
-const NavBar = () => {
-  const user = useSelector((store) => store.user.user);
+const NavBar = ({ chat }) => {
+  const chatName = useSelector((store) => store.user.chatList ? store.user.chatList : []);
+  const user = useSelector((store) => store.user.user ? store.user.user : []);
+
+  const currentChatUser = useMemo(() => {
+    if (chatName && chat) {
+      return chatName.find(val => val._id === chat);
+    }
+    return null;
+  }, [chatName, chat]);
+
   return (
     <div className="navbar bg-base-300 shadow-sm">
       <div className="navbar-start">
@@ -24,9 +33,14 @@ const NavBar = () => {
           </svg>
         </label>
       </div>
-      {user && <div className="navbar-center">
-        <a className="btn btn-ghost text-xl">daisyUI {user.username}</a>
-      </div>}
+
+
+      <div className="navbar-center">
+        <a className="btn btn-ghost text-xl">
+          {currentChatUser ? currentChatUser.username : user.username}
+        </a>
+      </div>
+
       <div className="navbar-end">
         <button className="btn btn-ghost btn-circle">
           <svg
@@ -64,7 +78,7 @@ const NavBar = () => {
           </div>
         </button>
       </div>
-    </div>
+    </div >
   );
 };
 

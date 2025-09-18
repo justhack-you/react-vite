@@ -5,5 +5,3 @@ export const validationCheck = (res) => {
         toast.error(error.msg);
     });
 }
-
-export default validationCheck
