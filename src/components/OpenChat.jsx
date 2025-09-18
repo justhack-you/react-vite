@@ -23,7 +23,6 @@ const OpenChat = () => {
     if (hasPermission) {
       try {
         const sub = await subscribeUserToPush();
-        console.log('>>>>>', sub)
         await axios.post('http://localhost:5000/subscribe', {
           subscription: sub,
           userId: user.id
@@ -33,8 +32,6 @@ const OpenChat = () => {
             'token': token
           }
         });
-
-        console.log('>>>>', sub)
       } catch (error) {
         console.error('Error subscribing to push notifications:', error);
       }

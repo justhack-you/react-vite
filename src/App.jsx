@@ -10,17 +10,17 @@ import { useEffect } from "react";
 
 function App() {
 
-  useEffect(() => {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/public/sw.js ')
-        .then((registration) => {
-          console.log('SW registered: ', registration);
-        })
-        .catch((registrationError) => {
-          console.log('SW registration failed: ', registrationError);
-        });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if ('serviceWorker' in navigator) {
+  //     navigator.serviceWorker.register('/public/sw.js ')
+  //       .then((registration) => {
+  //         console.log('SW registered: ', registration);
+  //       })
+  //       .catch((registrationError) => {
+  //         console.log('SW registration failed: ', registrationError);
+  //       });
+  //   }
+  // }, []);
 
   return (
     <>
