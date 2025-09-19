@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Drawer from "./components/Drawer";
 import Login from "./components/Login";
@@ -5,7 +6,7 @@ import Registration from "./components/Registration";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import { store } from "./components/AppStores/store";
-import { useEffect } from "react";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 
 function App() {
@@ -29,7 +30,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
-            <Route path="/chat/:chatId" element={<Drawer />} />
+            <Route path="/chat/:chatId" element={
+              <ProtectedRoute>
+                <Drawer />
+              </ProtectedRoute>
+            } />
           </Routes>
         </BrowserRouter>
 

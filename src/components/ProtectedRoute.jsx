@@ -1,16 +1,18 @@
-import { useSelector } from "react-redux";
-import { Navigate, Outlet } from "react-router-dom";
+import React from 'react';
+import { isTokenExpired } from '../components/utilities/utilitiesFunction.jsx';
+import { useNavigate } from 'react-router-dom';
 
-export const ProtectedRoute = () => {
-    const { isAuthenticated, token } = useSelector((state) => state);
+const ProtectedRoute = ({ children }) => {
+    const token = localStorage.getItem('token');
+    const navigator = useNavigate();
 
-    console.log('>>>>', state)
-
-    if (!isAuthenticated || !token) {
-        return <Navigate to="/" replace />;
+    console.log('token',token)
+    if (isTokenExpired(token)) {
+        localStorage.removeItem('token');
+        return navigator('/')
     }
 
-    return <Outlet />;
+    return children;
 };
 
-// export default ProtectedRoute;
+export default ProtectedRoute;

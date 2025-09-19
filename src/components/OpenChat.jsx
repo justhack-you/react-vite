@@ -38,12 +38,9 @@ const OpenChat = () => {
     }
   };
   useEffect(() => {
+
     initializePushNotifications();
 
-    if (!token) {
-      navigate("/");
-      return;
-    }
     const fetchChatData = async () => {
       setLoading(true);
       try {
@@ -61,7 +58,6 @@ const OpenChat = () => {
   }, [chatId, user?.id, token, navigate]);
 
   useEffect(() => {
-    if (!token) return;
     const socket = createSocketConnection();
     socket.emit("joinChat", { sender: user.id, receiver: chatId });
     socket.on("receiveMessage", ({ sender, content }) => {
