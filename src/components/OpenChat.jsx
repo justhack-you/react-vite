@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { createSocketConnection } from "./utilities/socket";
 import NavBar from "./navBar";
 import { requestNotificationPermission, subscribeUserToPush } from "./utilities/notifications";
+import { MessageCircle } from "lucide-react";
 
 const API_BASE_URL = "http://localhost:5000";
 
@@ -64,6 +65,7 @@ const OpenChat = () => {
       setChatData((prev) => [...prev, { sender, content, timestamp: Date.now() }]);
 
     });
+    socket.emit('markAsRead', { senderId: user.id, receiverId: chatId });
     return () => socket.close();
   }, [user?.id, chatId, token]);
 
@@ -94,8 +96,12 @@ const OpenChat = () => {
             </div>
           </div>
         )) : (
-          <div className="text-center text-gray-500 pt-[15%]">
-            No messages yet. Start the conversation!
+          <div className="flex-1 pt-[13%] bg-gray-50 flex items-center justify-center">
+            <div className="text-center">
+              <MessageCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Select a conversation</h3>
+              <p className="text-gray-600">Choose a contact from the sidebar to start messaging</p>
+            </div>
           </div>
         )}
         <div ref={messagesEndRef} />
