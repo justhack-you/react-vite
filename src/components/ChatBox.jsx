@@ -5,7 +5,6 @@ import { createSocketConnection } from "./utilities/socket";
 
 const ChatBox = () => {
   const { chatId } = useParams();
-  const token = useSelector((store) => store.user.token);
   const user = useSelector((store) => store.user.user);
   const [message, setMessage] = useState("");
 

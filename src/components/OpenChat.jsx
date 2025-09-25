@@ -6,6 +6,7 @@ import { createSocketConnection } from "./utilities/socket";
 import NavBar from "./navBar";
 import { requestNotificationPermission, subscribeUserToPush } from "./utilities/notifications";
 import { MessageCircle } from "lucide-react";
+import ChatLoader from "./chatLoader";
 
 const API_BASE_URL = "http://localhost:5000";
 
@@ -74,7 +75,7 @@ const OpenChat = () => {
   }, [chatData]);
 
   if (loading) {
-    return <div className="text-center text-gray-500 pt-[15%]">Loading...</div>;
+    return <ChatLoader />;
   }
 
   return (
