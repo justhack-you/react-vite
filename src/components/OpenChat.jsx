@@ -6,7 +6,7 @@ import { createSocketConnection } from "./utilities/socket";
 import NavBar from "./navBar";
 import { requestNotificationPermission, subscribeUserToPush } from "./utilities/notifications";
 import { MessageCircle } from "lucide-react";
-import ChatLoader from "./chatLoader";
+import ChatLoader from "./ChatLoader";
 
 const API_BASE_URL = "http://localhost:5000";
 
