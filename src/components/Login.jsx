@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { validationCheck } from "./utilities/utilitiesFunction";
 import { useDispatch } from "react-redux";
 import { loginUser } from "./AppStores/userSlice";
+import { API_BASE_URL } from "./utilities/url";
 
 const Login = () => {
   const [email, setEmail] = useState("keyurhalpati@gmail.com");
@@ -15,7 +16,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const res = await axios.post("http://localhost:5000/login", { email, password })
+      const res = await axios.post(`${API_BASE_URL}/login`, { email, password })
       if (res.data.code === 'VALID_CREDENTIALS_200') {
         toast.success("Login Successful...");
         dispatch(loginUser({ user: res.data.user, token: res.headers.token }));

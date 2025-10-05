@@ -5,6 +5,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
 import toast from 'react-hot-toast';
 import { validationCheck } from "./utilities/utilitiesFunction";
+import { API_BASE_URL } from "./utilities/url";
 
 const Registration = () => {
   const [userName, setUserName] = useState("");
@@ -18,7 +19,7 @@ const Registration = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/register", {
+      const res = await axios.post(`${API_BASE_URL}/register`, {
         username: userName, email, password, skills: skillsArray
       });
 

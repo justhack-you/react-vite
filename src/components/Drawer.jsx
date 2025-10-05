@@ -8,6 +8,7 @@ import { loginUser, chatList } from "./AppStores/userSlice";
 import { formatTimestamp, getTokenData } from "./utilities/utilitiesFunction";
 import { Search, X } from "lucide-react";
 import { createSocketConnection } from "./utilities/socket";
+import { API_BASE_URL } from "./utilities/url";
 
 const Drawer = () => {
   const user = useSelector((state) => state.user.user);
@@ -21,7 +22,7 @@ const Drawer = () => {
   useEffect(() => {
     const fetchLogin = async () => {
       const token = localStorage.getItem('token');
-      const userDetails = await axios.get(`http://localhost:5000/user/detail/${getTokenData(token).id}`, {
+      const userDetails = await axios.get(`${API_BASE_URL}/user/detail/${getTokenData(token).id}`, {
         headers: {
           token: token
         }

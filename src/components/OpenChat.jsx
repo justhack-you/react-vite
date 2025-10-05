@@ -3,12 +3,11 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { createSocketConnection } from "./utilities/socket";
-import NavBar from "./navBar";
+import NavBar from "./NavBar";
 import { requestNotificationPermission, subscribeUserToPush } from "./utilities/notifications";
 import { MessageCircle } from "lucide-react";
 import ChatLoader from "./ChatLoader";
-
-const API_BASE_URL = "http://localhost:5000";
+import { API_BASE_URL } from "./utilities/url";
 
 const OpenChat = () => {
   const user = useSelector((store) => store.user.user);
@@ -25,7 +24,7 @@ const OpenChat = () => {
     if (hasPermission) {
       try {
         const sub = await subscribeUserToPush();
-        await axios.post('http://localhost:5000/subscribe', {
+        await axios.post(`${API_BASE_URL}/subscribe`, {
           subscription: sub,
           userId: user.id
         }, {
