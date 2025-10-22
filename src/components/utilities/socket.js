@@ -1,11 +1,12 @@
 import io from "socket.io-client";
+import { API_BASE_URL } from "./url";
 
 export const createSocketConnection = () => {
     let socket;
-    if (location.hostname === "localhost") {
-        socket = io("http://localhost:5000"); // dev
+    if (location.includes("localhost")) {
+        socket = io(API_BASE_URL);
     } else {
-        socket = io("http://13.51.106.37", { path: "/socket.io" }); // prod
+        socket = io('/', { path: "/api/socket.io" });
     }
     return socket;
 };
