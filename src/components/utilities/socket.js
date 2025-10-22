@@ -1,12 +1,10 @@
 import io from "socket.io-client";
-import { API_BASE_URL } from "./url";
 
 export const createSocketConnection = () => {
-    let socket;
-    if (location.includes("localhost")) {
-        socket = io(API_BASE_URL);
-    } else {
-        socket = io('/', { path: "/api/socket.io" });
-    }
+    const socket = io("/", {
+        path: "/api/socket.io",
+        transports: ["websocket"],
+        withCredentials: true,
+    });
     return socket;
 };
