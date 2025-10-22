@@ -4,7 +4,7 @@ import { API_BASE_URL } from "./url";
 export const createSocketConnection = () => {
     let socket;
     if (location.includes("localhost")) {
-        socket = io(API_BASE_URL);
+        socket = io('/api');
     } else {
         socket = io('/', { path: "/api/socket.io" });
     }
