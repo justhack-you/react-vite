@@ -36,17 +36,17 @@ const Registration = () => {
         navigate("/");
       }
     } catch (err) {
-      toast.error("Registration Failed");
+      toast.error("Registration Failed",err);
     }
   };
-
+  
   const removeElement = (index) => {
     const updatedSkills = skillsArray.filter((_, i) => i !== index);
     setSkills(updatedSkills.join(', '));
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat relative" style={{ backgroundImage: "url('public/image.png')" }}>
+    <div className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat relative" style={{ backgroundImage: "url('/image.png')" }}>
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="card-title justify-center text-2xl font-bold">Register</h2>
