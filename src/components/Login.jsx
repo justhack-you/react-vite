@@ -8,8 +8,8 @@ import { loginUser } from "./AppStores/userSlice";
 import { API_BASE_URL } from "./utilities/url";
 
 const Login = () => {
-  const [email, setEmail] = useState("keyurhalpati@gmail.com");
-  const [password, setPassword] = useState("keyur123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
