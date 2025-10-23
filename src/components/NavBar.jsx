@@ -1,13 +1,17 @@
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = ({ chat }) => {
-  const chatName = useSelector((store) => store.user.chatList ? store.user.chatList : []);
-  const user = useSelector((store) => store.user.user ? store.user.user : []);
+  const chatName = useSelector((store) =>
+    store.user.chatList ? store.user.chatList : []
+  );
+  const user = useSelector((store) => (store.user.user ? store.user.user : []));
+  const navigator = useNavigate();
 
   const currentChatUser = useMemo(() => {
     if (chatName && chat) {
-      return chatName.find(val => val._id === chat);
+      return chatName.find((val) => val._id === chat);
     }
     return null;
   }, [chatName, chat]);
@@ -34,7 +38,6 @@ const NavBar = ({ chat }) => {
         </label>
       </div>
 
-
       <div className="navbar-center">
         <a className="btn btn-ghost text-xl">
           {currentChatUser ? currentChatUser.username : user.username}
@@ -42,10 +45,13 @@ const NavBar = ({ chat }) => {
       </div>
 
       <div className="navbar-end">
-        <button className="btn btn-ghost btn-circle" onClick={() => {
-          localStorage.removeItem('token');
-          window.location.reload();
-        }}>
+        <button
+          className="btn btn-ghost btn-circle"
+          onClick={() => {
+            localStorage.removeItem("token");
+            navigator("/");
+          }}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -62,7 +68,7 @@ const NavBar = ({ chat }) => {
           </svg>
         </button>
       </div>
-    </div >
+    </div>
   );
 };
 
