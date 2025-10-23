@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Drawer from "./components/Drawer";
 import Login from "./components/Login";

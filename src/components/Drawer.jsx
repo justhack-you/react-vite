@@ -39,6 +39,8 @@ const Drawer = () => {
   useEffect(() => {
     if (!user?.id) return;
     const socket = createSocketConnection();
+    console.log('socket',socket)
+    console.log("user id in drawer",user?.id)
     socket.emit('drawerList', { loginId: user.id });
 
     socket.on('updateDrawer', () => {
@@ -124,7 +126,7 @@ const Drawer = () => {
                 </li>
               )}
 
-              {filteredChats.map((chat, index) => (
+              {filteredChats.map((chat,) => (
                 <li key={chat._id} className="mb-2">
                   <Link
                     className={`flex items-center p-2 rounded-lg hover:bg-base-300 transition-colors ${selectedUser === chat._id ?
